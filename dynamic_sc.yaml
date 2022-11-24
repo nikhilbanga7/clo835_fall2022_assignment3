@@ -5,7 +5,7 @@ metadata:
 provisioner: kubernetes.io/aws-ebs
 parameters:
   type: gp2
-  fsType:ext4
+  fsType: ext4
 reclaimPolicy: Delete
 volumeBindingMode: WaitingForFirstConsumer
 allowVolumeExpansion: false
