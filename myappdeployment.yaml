@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myapps
+  labels:
+    app: myapps
+spec:
+  selector:
+    matchLabels:
+      app: myapps
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: myapps
+    spec:
+      containers:
+      - name: myapps
+        image: 660700579747.dkr.ecr.us-east-1.amazonaws.com/assignment2ecr:v0.1nodeapp
+    env:
+    - name: myapps
+      value: pw
