@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: myapps
-        image: 660700579747.dkr.ecr.us-east-1.amazonaws.com/assignment2ecr:v0.1nodeapp
+        image: 660700579747.dkr.ecr.us-east-1.amazonaws.com/assignment3ecr:v0.1nodeapp
     env:
     - name: myapps
       value: pw
