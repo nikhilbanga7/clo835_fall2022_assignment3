@@ -1,22 +1,40 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: myapps
+  name: myapp
   labels:
-    app: myapps
+    app: myapp
 spec:
+  replicas: 2
   selector:
     matchLabels:
-      app: myapps
-  replicas: 2
+      app: myapp
+      tier: frontend
+  strategy:
+    type: Recreate
   template:
     metadata:
       labels:
-        app: myapps
+        app: myapp
+        tier: frontend
     spec:
       containers:
-      - name: myapps
-        image: 660700579747.dkr.ecr.us-east-1.amazonaws.com/assignment3ecr:v0.1nodeapp
-    env:
-    - name: myapps
-      value: pw
+      - image: 660700579747.dkr.ecr.us-east-1.amazonaws.com/assignment3ecr:v0.2nodeapp
+        name: myapp
+        env:
+        - name: DBHOST
+          value: 10.100.165.65
+        - name: DBPWD
+          value: "pw"
+        - name: DBPORT
+          value: "3306"
+        ports:
+        - containerPort: 80
+          name: myapp
+        volumeMounts:
+        - name: myapp-persistent-storage
+          mountPath: /var/www/html
+      volumes:
+      - name: myapp-persistent-storage
+        persistentVolumeClaim:
+          claimName: myapp-pv-claim
